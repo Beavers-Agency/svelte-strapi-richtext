@@ -1,5 +1,5 @@
 {
-  "name": "mon-composant-svelte",
+  "name": "svelte-richtext",
   "version": "1.0.0",
   "main": "src/RichText.svelte",
   "files": ["src/RichText.svelte"],
