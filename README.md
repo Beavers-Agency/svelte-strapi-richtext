@@ -1,1 +1,1 @@
-# svelte-richtext
+# svelte-strapi-richtext
