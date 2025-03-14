@@ -1,5 +1,5 @@
 {
-  "name": "@beavers-agency/svelte-richtext",
+  "name": "svelte-richtext-beavers",
   "version": "1.0.0",
   "main": "src/RichText.svelte",
   "files": ["src/RichText.svelte"],
