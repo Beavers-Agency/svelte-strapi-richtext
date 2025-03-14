@@ -1,5 +1,5 @@
 {
-  "name": "svelte-richtext-beavers",
+  "name": "svelte-strapi-richtext",
   "version": "1.0.1",
   "main": "src/RichText.svelte",
   "files": ["src/RichText.svelte"],
