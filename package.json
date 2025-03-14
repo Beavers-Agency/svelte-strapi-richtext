@@ -1,6 +1,6 @@
 {
   "name": "svelte-richtext-beavers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "src/RichText.svelte",
   "files": ["src/RichText.svelte"],
   "type": "module"

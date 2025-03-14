@@ -1,7 +1,5 @@
 <script lang="ts">
 	let { blocks } = $props();
-
-	console.log(blocks);
 </script>
 
 {#each blocks as block}
