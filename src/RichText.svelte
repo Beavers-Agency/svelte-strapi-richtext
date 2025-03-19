@@ -88,12 +88,10 @@
 			</ol>
 		{/if}
 	{:else if block.type === 'image' && block.image && block.image.url !== ''}
-		<div class="px-8 lg:px-[1.7578125vw]">
-			<img
-				alt={block.image.alternativeText ? block.image.alternativeText : ''}
-				src={block.image.url}
-				class="h-auto w-full"
-			/>
-		</div>
+		<img
+			alt={block.image.alternativeText ? block.image.alternativeText : ''}
+			src={block.image.url}
+			class="h-auto w-full"
+		/>
 	{/if}
 {/each}
