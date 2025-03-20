@@ -42,6 +42,30 @@
 					{/each}
 				</h3>
 			{/if}
+		{:else if block.level === 4}
+			{#if block.children && block.children.length > 0}
+				<h4>
+					{#each block.children as child}
+						{child.text}
+					{/each}
+				</h4>
+			{/if}
+		{:else if block.level === 5}
+			{#if block.children && block.children.length > 0}
+				<h5>
+					{#each block.children as child}
+						{child.text}
+					{/each}
+				</h5>
+			{/if}
+		{:else if block.level === 6}
+			{#if block.children && block.children.length > 0}
+				<h6>
+					{#each block.children as child}
+						{child.text}
+					{/each}
+				</h6>
+			{/if}
 		{/if}
 	{:else if block.type === 'list'}
 		{#if block.format == 'unordered'}
