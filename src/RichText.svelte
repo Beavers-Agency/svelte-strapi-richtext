@@ -14,6 +14,8 @@
 							<strong>{@html child.text.replace('\n', '<br />')}</strong>
 						{:else if child.italic}
 							<em>{@html child.text.replace('\n', '<br />')}</em>
+						{:else if child.strikethrough}
+							<s>{@html child.text.replace('\n', '<br />')}</s>
 						{:else}
 							{@html child.text.replace('\n', '<br />')}
 						{/if}
@@ -80,6 +82,8 @@
 											<strong>{child2.text}</strong>
 										{:else if child2.italic}
 											<em>{child2.text}</em>
+										{:else if child2.strikethrough}
+											<s>{child2.text}</s>
 										{:else}
 											{child2.text}
 										{/if}
@@ -101,6 +105,8 @@
 										<strong>{child2.text}</strong>
 									{:else if child2.italic}
 										<em>{child2.text}</em>
+									{:else if child2.strikethrough}
+										<s>{child2.text}</s>
 									{:else}
 										{child2.text}
 									{/if}
