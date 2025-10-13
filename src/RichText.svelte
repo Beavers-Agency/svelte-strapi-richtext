@@ -21,7 +21,15 @@
 						{/if}
 					{:else if child.type === 'link'}
 						<a href={child.url} title={child.children[0].text}>
-							{child.children[0].text}
+							{#if child.children[0].bold}
+								<strong>{child.children[0].text}</strong>
+							{:else if child.children[0].italic}
+								<em>{child.children[0].text}</em>
+							{:else if child.children[0].strikethrough}
+								<s>{child.children[0].text}</s>
+							{:else}
+								{child.children[0].text}
+							{/if}
 						</a>
 					{/if}
 				{/each}
