@@ -26,7 +26,7 @@
   {@html renderStyledText(node)}
 
 {:else if node?.type === 'link'}
-  <a href={node.url} title={linkTitle(node)} rel="noopener">
+  <a href={node.url} title={linkTitle(node)}>
     {#if node.children && node.children.length > 0}
       {#each node.children as child}
         <!-- récursion sur les enfants du lien -->
