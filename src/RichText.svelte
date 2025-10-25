@@ -1,135 +1,73 @@
 <script lang="ts">
-	let { blocks } = $props();
+  import InlineNode from './InlineNode.svelte';
+  let { blocks } = $props();
 </script>
 
 {#each blocks as block}
-	{#if block.type === 'paragraph'}
-		{#if block.children && block.children.length > 0}
-			<p>
-				{#each block.children as child}
-					{#if block.children.length === 1 && child.type === 'text' && child.text === ''}
-						<br />
-					{:else if child.type === 'text'}
-						{#if child.bold}
-							<strong>{@html child.text.replace('\n', '<br />')}</strong>
-						{:else if child.italic}
-							<em>{@html child.text.replace('\n', '<br />')}</em>
-						{:else if child.strikethrough}
-							<s>{@html child.text.replace('\n', '<br />')}</s>
-						{:else}
-							{@html child.text.replace('\n', '<br />')}
-						{/if}
-					{:else if child.type === 'link'}
-						<a href={child.url} title={child.children[0].text}>
-							{#if child.children[0].bold}
-								<strong>{child.children[0].text}</strong>
-							{:else if child.children[0].italic}
-								<em>{child.children[0].text}</em>
-							{:else if child.children[0].strikethrough}
-								<s>{child.children[0].text}</s>
-							{:else}
-								{child.children[0].text}
-							{/if}
-						</a>
-					{/if}
-				{/each}
-			</p>
-		{/if}
-	{:else if block.type === 'heading'}
-		{#if block.level === 2}
-			{#if block.children && block.children.length > 0}
-				<h2>
-					{#each block.children as child}
-						{child.text}
-					{/each}
-				</h2>
-			{/if}
-		{:else if block.level === 3}
-			{#if block.children && block.children.length > 0}
-				<h3>
-					{#each block.children as child}
-						{child.text}
-					{/each}
-				</h3>
-			{/if}
-		{:else if block.level === 4}
-			{#if block.children && block.children.length > 0}
-				<h4>
-					{#each block.children as child}
-						{child.text}
-					{/each}
-				</h4>
-			{/if}
-		{:else if block.level === 5}
-			{#if block.children && block.children.length > 0}
-				<h5>
-					{#each block.children as child}
-						{child.text}
-					{/each}
-				</h5>
-			{/if}
-		{:else if block.level === 6}
-			{#if block.children && block.children.length > 0}
-				<h6>
-					{#each block.children as child}
-						{child.text}
-					{/each}
-				</h6>
-			{/if}
-		{/if}
-	{:else if block.type === 'list'}
-		{#if block.format == 'unordered'}
-			{#if block.children && block.children.length > 0}
-				<ul>
-					{#each block.children as child}
-						<li>
-							{#if child.type === 'list-item'}
-								{#if child.children && child.children.length > 0}
-									{#each child.children as child2}
-										{#if child2.bold}
-											<strong>{child2.text}</strong>
-										{:else if child2.italic}
-											<em>{child2.text}</em>
-										{:else if child2.strikethrough}
-											<s>{child2.text}</s>
-										{:else}
-											{child2.text}
-										{/if}
-									{/each}
-								{/if}
-							{/if}
-						</li>
-					{/each}
-				</ul>
-			{/if}
-		{:else if block.format == 'ordered'}
-			<ol>
-				{#each block.children as child}
-					<li>
-						{#if child.type === 'list-item'}
-							{#if child.children && child.children.length > 0}
-								{#each child.children as child2}
-									{#if child2.bold}
-										<strong>{child2.text}</strong>
-									{:else if child2.italic}
-										<em>{child2.text}</em>
-									{:else if child2.strikethrough}
-										<s>{child2.text}</s>
-									{:else}
-										{child2.text}
-									{/if}
-								{/each}
-							{/if}
-						{/if}
-					</li>
-				{/each}
-			</ol>
-		{/if}
-	{:else if block.type === 'image' && block.image && block.image.url !== ''}
-		<img
-			alt={block.image.alternativeText ? block.image.alternativeText : ''}
-			src={block.image.url}
-			class="h-auto w-full"
-		/>
-	{/if}
+  {#if block.type === 'paragraph'}
+    {#if block.children && block.children.length > 0}
+      <p>
+        {#each block.children as child}
+          {#if block.children.length === 1 && child.type === 'text' && child.text === ''}
+            <br />
+          {:else}
+            <InlineNode node={child} />
+          {/if}
+        {/each}
+      </p>
+    {/if}
+
+  {:else if block.type === 'heading'}
+    {#if block.children && block.children.length > 0}
+      {#if block.level === 2}
+        <h2>{#each block.children as child}{child.text}{/each}</h2>
+      {:else if block.level === 3}
+        <h3>{#each block.children as child}{child.text}{/each}</h3>
+      {:else if block.level === 4}
+        <h4>{#each block.children as child}{child.text}{/each}</h4>
+      {:else if block.level === 5}
+        <h5>{#each block.children as child}{child.text}{/each}</h5>
+      {:else if block.level === 6}
+        <h6>{#each block.children as child}{child.text}{/each}</h6>
+      {/if}
+    {/if}
+
+  {:else if block.type === 'list'}
+    {#if block.format == 'unordered'}
+      {#if block.children && block.children.length > 0}
+        <ul>
+          {#each block.children as child}
+            <li>
+              {#if child.type === 'list-item' && child.children && child.children.length > 0}
+                {#each child.children as child2}
+                  <InlineNode node={child2} />
+                {/each}
+              {/if}
+            </li>
+          {/each}
+        </ul>
+      {/if}
+    {:else if block.format == 'ordered'}
+      {#if block.children && block.children.length > 0}
+        <ol>
+          {#each block.children as child}
+            <li>
+              {#if child.type === 'list-item' && child.children && child.children.length > 0}
+                {#each child.children as child2}
+                  <InlineNode node={child2} />
+                {/each}
+              {/if}
+            </li>
+          {/each}
+        </ol>
+      {/if}
+    {/if}
+
+  {:else if block.type === 'image' && block.image && block.image.url !== ''}
+    <img
+      alt={block.image.alternativeText ? block.image.alternativeText : ''}
+      src={block.image.url}
+      class="h-auto w-full"
+    />
+  {/if}
 {/each}
