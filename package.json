@@ -1,7 +1,7 @@
 {
   "name": "svelte-strapi-richtext",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "src/RichText.svelte",
-  "files": ["src/RichText.svelte"],
+  "files": ["src/RichText.svelte", "src/InlineNode.svelte"],
   "type": "module"
 }
